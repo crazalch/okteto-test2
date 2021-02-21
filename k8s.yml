@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: okteto-test2
+  name: hello-world
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: okteto-test2
+      app: hello-world
   template:
     metadata:
       labels:
-        app: okteto-test2
+        app: hello-world
     spec:
       containers:
-      - image: okteto/okteto-test2:python
-        name: okteto-test2
+      - image: okteto/hello-world:python
+        name: hello-world
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: okteto-test2
+  name: hello-world
   annotations:
     dev.okteto.com/auto-ingress: "true"
 spec:
   type: ClusterIP  
   ports:
-  - name: "okteto-test2"
+  - name: "hello-world"
     port: 8080
   selector:
-    app: okteto-test2
+    app: hello-world
