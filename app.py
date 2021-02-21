@@ -1,12 +1,19 @@
 import os
 import pydevd_pycharm
 from flask import Flask
+import requests
 
 app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    msg = 'Hello World!'
+    msg = 'Hello World from the cluster foooo!'
+    
+
+    r = requests.get(url='https://api.nal.usda.gov/fdc/v1/170184?api_key=JBK60wLCEeZwNMVYoiRKbWU4lUJaeJFhYTC557ze')
+    json = r.json()
+    msg += str(json)
+    
     return msg
 
 def attach():
